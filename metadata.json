@@ -2,6 +2,7 @@
   "name": "Digital Printers Connect",
   "description": "An intelligent AI chatbot assistant specializing in digital printing technologies, troubleshooting, and industry connections.",
   "requestFramePermissions": [
-    "geolocation"
+    "geolocation",
+    "microphone"
   ]
 }

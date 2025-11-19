@@ -1,3 +1,4 @@
+
 export enum Sender {
   User = 'user',
   Bot = 'bot'
@@ -17,6 +18,9 @@ export interface Message {
   timestamp: Date;
   isStreaming?: boolean;
   groundingMetadata?: GroundingMetadata;
+  feedback?: 'up' | 'down';
+  suggestions?: string[];
+  image?: string;
 }
 
 export interface ChatState {
@@ -26,4 +30,9 @@ export interface ChatState {
 
 export enum ModelNames {
   Flash = 'gemini-2.5-flash',
+  FlashLite = 'gemini-2.5-flash-lite-latest',
+  ProThinking = 'gemini-3-pro-preview',
+  TTS = 'gemini-2.5-flash-preview-tts',
+  Live = 'gemini-2.5-flash-native-audio-preview-09-2025',
+  Imagen = 'imagen-4.0-generate-001'
 }
