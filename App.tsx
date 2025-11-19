@@ -11,7 +11,7 @@ import { Printer } from 'lucide-react';
 
 const WELCOME_MESSAGE: Message = {
   id: 'welcome',
-  text: "# Digital Printers Connect \n\nHello! 👋 I am your **Worldwide AI Printing Assistant**.\n\n**Developed by:** Success Ugbede Edoh (Abuja, Nigeria)\n\nI can connect you with printers globally, solve technical issues, and explain complex printing technologies.\n\n### How can I help?\n* 🌍 **Find Printers Worldwide** (e.g., \"Find large format printers in London\")\n* 🛠️ **Troubleshoot Machines** (e.g., \"Fix banding on Epson EcoTank\")\n* 📚 **Learn Technologies** (e.g., \"What are the differences between CMYK and RGB?\", \"Explain UV printing\")\n* 📄 **Material Sourcing** (e.g., \"Where to buy sublimation ink in Lagos\")\n\nType your request, use the **Voice Mode**, or explore the menu!",
+  text: "# Digital Printers Connect \n\nHello! 👋 I am your **Worldwide AI Printing Assistant**.\n\n**Developed by:** [Success Ugbede Edoh](https://digitalprintersconnec@aistudio.com) (Abuja, Nigeria)\n\nI can connect you with printers globally, solve technical issues, and explain complex printing technologies.\n\n### How can I help?\n* 🌍 **Find Printers Worldwide** (e.g., \"Find large format printers in London\")\n* 🛠️ **Troubleshoot Machines** (e.g., \"Fix banding on Epson EcoTank\")\n* 📚 **Learn Technologies** (e.g., \"What are the differences between CMYK and RGB?\", \"Explain UV printing\")\n* 📄 **Material Sourcing** (e.g., \"Where to buy sublimation ink in Lagos\")\n\nType your request, use the **Voice Mode**, or explore the menu!",
   sender: Sender.Bot,
   timestamp: new Date(),
   suggestions: ["Find a printer nearby", "Explain UV printing", "Difference between CMYK and RGB", "Troubleshoot print quality"]

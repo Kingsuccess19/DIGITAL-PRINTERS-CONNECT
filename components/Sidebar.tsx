@@ -151,7 +151,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         <div className="absolute bottom-0 left-0 w-full p-4 border-t border-slate-800/50 bg-slate-900/90 backdrop-blur-sm">
             <div className="text-xs font-medium text-slate-500 mb-2 uppercase tracking-wider">Developer Contact</div>
             <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800 text-xs space-y-2">
-              <div className="text-slate-300 font-bold">Success Ugbede Edoh</div>
+              <a href="https://digitalprintersconnec@aistudio.com" target="_blank" rel="noopener noreferrer" className="text-slate-300 font-bold hover:text-cmyk-cyan transition-colors block">Success Ugbede Edoh</a>
               <div className="text-slate-500 flex flex-col gap-1">
                  <a href="tel:+2348138850702" className="hover:text-cmyk-cyan transition-colors">+234 813 885 0702</a>
                  <a href="tel:+2349020161602" className="hover:text-cmyk-cyan transition-colors">+234 902 016 1602</a>

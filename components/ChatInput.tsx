@@ -72,7 +72,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, isLoading }) => {
       <div className="mt-5 text-center">
         <div className="inline-flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900/40 border border-slate-800/50 backdrop-blur-sm">
             <div className="text-xs text-slate-400 font-medium tracking-wide">
-              Developed By <span className="text-transparent bg-clip-text bg-gradient-to-r from-cmyk-cyan to-cmyk-magenta font-bold">Success Ugbede Edoh</span>
+              Developed By <a href="https://digitalprintersconnec@aistudio.com" target="_blank" rel="noopener noreferrer" className="group"><span className="text-transparent bg-clip-text bg-gradient-to-r from-cmyk-cyan to-cmyk-magenta font-bold group-hover:opacity-80 transition-opacity">Success Ugbede Edoh</span></a>
             </div>
             <div className="text-[10px] text-slate-500 font-mono mt-1 flex gap-3">
               <span>Abuja, Nigeria</span>
