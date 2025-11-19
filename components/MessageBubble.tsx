@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Message, Sender } from '../types';
-import { User, Bot, MapPin, ExternalLink } from 'lucide-react';
+import { User, Bot, MapPin, ExternalLink, Globe, Search } from 'lucide-react';
 
 interface MessageBubbleProps {
   message: Message;
@@ -10,10 +10,11 @@ interface MessageBubbleProps {
 export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
   const isUser = message.sender === Sender.User;
   const hasMaps = message.groundingMetadata?.groundingChunks?.some(chunk => chunk.maps);
+  const hasWeb = message.groundingMetadata?.groundingChunks?.some(chunk => chunk.web);
 
   return (
     <div className={`flex w-full ${isUser ? 'justify-end' : 'justify-start'} mb-6 animate-fade-in-up`}>
-      <div className={`flex max-w-[85%] md:max-w-[70%] ${isUser ? 'flex-row-reverse' : 'flex-row'} items-start gap-3`}>
+      <div className={`flex max-w-[90%] md:max-w-[75%] ${isUser ? 'flex-row-reverse' : 'flex-row'} items-start gap-3`}>
         
         {/* Avatar */}
         <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center shadow-lg ${
@@ -53,7 +54,7 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
                 },
                 ul: ({children}) => <ul className="list-disc ml-4 my-2 space-y-1">{children}</ul>,
                 ol: ({children}) => <ol className="list-decimal ml-4 my-2 space-y-1">{children}</ol>,
-                a: ({href, children}) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-cmyk-cyan hover:underline">{children}</a>,
+                a: ({href, children}) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-cmyk-cyan hover:underline break-all">{children}</a>,
                 strong: ({children}) => <strong className="font-bold text-cmyk-magenta">{children}</strong>
               }}
             >
@@ -61,39 +62,87 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
             </ReactMarkdown>
           </div>
           
-          {/* Google Maps / Grounding Sources */}
-          {hasMaps && (
-            <div className="mt-4 pt-3 border-t border-slate-700/50">
-              <div className="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1">
-                <MapPin size={12} />
-                Located Printers & Sources
-              </div>
-              <div className="grid gap-2">
-                {message.groundingMetadata?.groundingChunks?.map((chunk, i) => {
-                  if (chunk.maps) {
-                    return (
-                      <a 
-                        key={i} 
-                        href={chunk.maps.uri} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-700 hover:border-cmyk-cyan/50 transition-all group"
-                      >
-                        <div className="flex items-center gap-2 overflow-hidden">
-                          <div className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-cmyk-cyan">
-                            <MapPin size={14} />
-                          </div>
-                          <span className="text-sm font-medium text-slate-300 group-hover:text-white truncate">
-                            {chunk.maps.title}
-                          </span>
-                        </div>
-                        <ExternalLink size={14} className="text-slate-500 group-hover:text-cmyk-cyan" />
-                      </a>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
+          {/* Grounding Sources (Maps & Web) */}
+          {(hasMaps || hasWeb) && (
+            <div className="mt-4 pt-3 border-t border-slate-700/50 space-y-3">
+              
+              {/* Google Maps Results */}
+              {hasMaps && (
+                <div>
+                  <div className="text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1">
+                    <MapPin size={10} />
+                    Locations Found
+                  </div>
+                  <div className="grid gap-2">
+                    {message.groundingMetadata?.groundingChunks?.map((chunk, i) => {
+                      if (chunk.maps) {
+                        return (
+                          <a 
+                            key={`map-${i}`} 
+                            href={chunk.maps.uri} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-700 hover:border-cmyk-cyan/50 transition-all group"
+                          >
+                            <div className="flex items-center gap-2 overflow-hidden">
+                              <div className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-cmyk-cyan shrink-0">
+                                <MapPin size={14} />
+                              </div>
+                              <div className="flex flex-col min-w-0">
+                                <span className="text-sm font-medium text-slate-300 group-hover:text-white truncate">
+                                  {chunk.maps.title}
+                                </span>
+                                <span className="text-[10px] text-slate-500 truncate">Google Maps</span>
+                              </div>
+                            </div>
+                            <ExternalLink size={14} className="text-slate-500 group-hover:text-cmyk-cyan shrink-0" />
+                          </a>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Google Search Results */}
+              {hasWeb && (
+                <div>
+                   <div className="text-[10px] font-bold text-slate-400 mb-2 uppercase tracking-wider flex items-center gap-1">
+                    <Globe size={10} />
+                    Web Sources
+                  </div>
+                  <div className="grid gap-2">
+                    {message.groundingMetadata?.groundingChunks?.map((chunk, i) => {
+                      if (chunk.web) {
+                        return (
+                          <a 
+                            key={`web-${i}`} 
+                            href={chunk.web.uri} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-between p-2 rounded-lg bg-slate-900/50 hover:bg-slate-900 border border-slate-700 hover:border-cmyk-magenta/50 transition-all group"
+                          >
+                            <div className="flex items-center gap-2 overflow-hidden">
+                              <div className="w-6 h-6 rounded bg-slate-800 flex items-center justify-center text-cmyk-magenta shrink-0">
+                                <Search size={14} />
+                              </div>
+                              <div className="flex flex-col min-w-0">
+                                <span className="text-sm font-medium text-slate-300 group-hover:text-white truncate">
+                                  {chunk.web.title}
+                                </span>
+                                <span className="text-[10px] text-slate-500 truncate">{new URL(chunk.web.uri).hostname}</span>
+                              </div>
+                            </div>
+                            <ExternalLink size={14} className="text-slate-500 group-hover:text-cmyk-magenta shrink-0" />
+                          </a>
+                        );
+                      }
+                      return null;
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           )}
 

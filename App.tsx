@@ -9,7 +9,7 @@ import { Printer } from 'lucide-react';
 
 const WELCOME_MESSAGE: Message = {
   id: 'welcome',
-  text: "# Hello! 👋\n\nI'm the **Digital Printers Connect AI**. \n\nI can help you with:\n* 🖨️ **Printer Troubleshooting**\n* 📍 **Finding Printers Worldwide** (with Google Maps)\n* 🎨 **Color Profiles & Calibration**\n* 🔍 **Industry Standards**\n\nHow can I assist your printing project today?",
+  text: "# Digital Printers Connect \n\nHello! 👋 I am your **Worldwide AI Printing Assistant**.\n\n**Developed by:** Success Ugbede Edoh (Abuja, Nigeria)\n\nI can connect you with printers globally and solve technical issues.\n\n### How can I help?\n* 🌍 **Find Printers Worldwide** (e.g., \"Find large format printers in London\")\n* 🛠️ **Troubleshoot Machines** (e.g., \"Fix banding on Epson EcoTank\")\n* 📄 **Material Sourcing** (e.g., \"Where to buy sublimation ink in Lagos\")\n\nType your request below!",
   sender: Sender.Bot,
   timestamp: new Date(),
 };
@@ -78,7 +78,7 @@ export default function App() {
           );
         },
         (metadata) => {
-          // Handle grounding metadata (Maps)
+          // Handle grounding metadata (Maps/Search)
           setMessages((prev) => 
             prev.map((msg) => 
               msg.id === botMessageId 

@@ -67,12 +67,20 @@ export const ChatInput: React.FC<ChatInputProps> = ({ onSend, isLoading }) => {
           {isLoading ? <Loader2 className="animate-spin" size={20} /> : <SendHorizontal size={22} />}
         </button>
       </form>
-      <div className="mt-4 text-center space-y-1">
-        <div className="text-xs text-slate-400">
-          Developed By <span className="text-cmyk-cyan font-medium">Success Ugbede Edoh</span>, from Abuja Nigeria
-        </div>
-        <div className="text-[11px] text-slate-500 font-mono">
-          Contact: +2348138850702, +2349020161602
+      
+      {/* Developer Credits */}
+      <div className="mt-5 text-center">
+        <div className="inline-flex flex-col items-center justify-center p-3 rounded-xl bg-slate-900/40 border border-slate-800/50 backdrop-blur-sm">
+            <div className="text-xs text-slate-400 font-medium tracking-wide">
+              Developed By <span className="text-transparent bg-clip-text bg-gradient-to-r from-cmyk-cyan to-cmyk-magenta font-bold">Success Ugbede Edoh</span>
+            </div>
+            <div className="text-[10px] text-slate-500 font-mono mt-1 flex gap-3">
+              <span>Abuja, Nigeria</span>
+              <span className="text-slate-700">|</span>
+              <span className="hover:text-slate-300 transition-colors">+234 813 885 0702</span>
+              <span className="text-slate-700">|</span>
+              <span className="hover:text-slate-300 transition-colors">+234 902 016 1602</span>
+            </div>
         </div>
       </div>
     </div>
